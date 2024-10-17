@@ -19,3 +19,16 @@
 #     -10 <= nums[i] <= 10
 #     The product of any subarray of nums is guaranteed to fit in a 32-bit integer.
 
+from typing import List
+
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        answer = nums[0]
+        currMax, currMin = 1,1
+        for a in nums:
+            vals = (a, a * currMax, a * currMin)
+            currMax = max(vals)
+            currMin = min(vals)
+            answer = max(currMax, answer)
+        return answer
